@@ -1,0 +1,105 @@
+<!--
+Conway's Game of Life (Seawolf Edition)
+
+Author: Richard McKenna & Jessica Mortellaro
+        Stony Brook University
+        CSE 390
+        Advanced Programming Technique
+
+This page contains a JavaScript implementation of Conway's
+Game of Life, which is not really a game, but a simulation. The
+user may select different types of objects to put into the game
+world and may start and pause the simulation as desired. Through
+this assignment students should learn a bit about HTML5 controls, 
+JavaScript, and rendering to the canvas. Students must make the
+appropriate changes to this file and GameOfLife.js as needed
+according to the HW 1 instructions.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Conway's Game of Life (Seawolf Edition)</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Page style, like colors and fonts, are specified
+        inside the GameOfLife.css style sheet.
+        -->
+        <link rel="stylesheet" type="text/css" href="./css/GameOfLife.css" />
+        <!-- The JavaScript code that actually runs the Game of Life
+        simulation is inside the GameOfLife.js JavaScript file. This
+        file does all game state updating and rendering. Note that
+        methods inside this file are referenced later in this page.
+        -->
+        <script src="./js/GameOfLife.js"></script>
+    </head>
+    <body>
+        <!--
+        This is the page's header.
+        -->
+        <div id="banner">Conway's Game of Life<br />
+        (Seawolf Edition)<br />
+        </div>
+        
+        <!-- This is the toolbar with buttons for starting, pausing,
+        and resetting the simulation, as well as containing a drop
+        down list for selecting patterns to add to the game.
+        -->
+        <div id="toolbar">
+            <input id="start_button" type="button" value="Start" />
+            <input id="pause_button" type="button" value="Pause" />
+            <input id="reset_button" type="button" value="Reset" />
+            
+            <!-- Here's the drop down list, it contains a reference
+            to all the image patterns to be used. -->
+            <select id="game_of_life_patterns">
+                <option value="Bomb.png">Bomb</option>
+                <option value="Exploder.png">Exploder</option>
+                <option value="Fuse.png">Fuse</option>
+                <option value="Glider.png">Glider</option>
+                <option value="GosperGliderGun1.png">Gosper Glider Gun #1</option>
+                <option value="GosperGliderGun2.png">Gosper Glider Gun #2</option>
+                <!-- requirement 4 -->
+                <option value="GosperGliderGun3.png">Gosper Glider Gun #3</option>
+                <option value="GosperGliderGun4.png">Gosper Glider Gun #4</option>
+                <option value="LightweightSpaceship.png">Lightweight Spaceship</option>
+                <option value="MassiveBomb.png">Massive Bomb</option>
+                <option value="MassiveQuadBomb.png">Massive Quad Bomb</option>
+                <option value="Seawolf1.png">Seawolf #1</option>
+                <option value="Seawolf2.png">Seawolf #2</option>
+                <option value="Seawolf3.png">Seawolf #3</option>
+                <option value="SmallExploder.png">Small Exploder</option>
+                <option value="TenCellRow.png">Ten Cell Row</option>
+                <option value="Tumbler.png">Tumbler</option>
+            </select>
+            
+            <!-- requirement 3; these buttons are for incrementing and 
+            decrementing the frame rate by 1 -->
+            <input id="dec_fps_button" type="button" value="FPS-" />
+            <input id="inc_fps_button" type="button" value="FPS+" />
+            <!-- These buttons are for changing the cell length of the cells, 
+            which in effect zooms the view in. Note that our CPU may have 
+            trouble keeping up when the cell length is 1, which means a 
+            1-to-1 cell length to pixel ratio.-->
+            <input id="dec_cell_length_button" type="button" value="Cell Length-" />
+            <input id="inc_cell_length_button" type="button" value="Cell Length+" />
+        </div>
+
+        <!--
+        This canvas is where we render the simulation. Note that we
+        also need to respond to mouse clicks on the canvas, which we'll
+        do via the respondToMouseClick method.
+        -->
+        <canvas id="game_of_life_canvas" width="1080" height="500">
+        </canvas>
+        <!-- requirement 6 -->
+        <div class="author">by Richard McKenna &amp; Jessica Mortellaro</div>
+        
+        <!--
+        This code gets executed after everything else has already
+        been loaded. Note that we are referencing methods defined
+        inside GameOfLife.js.
+        -->
+        <script>
+            initGameOfLife();
+        </script>
+    </body>
+</html>
